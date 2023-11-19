@@ -15,7 +15,6 @@ public class App {
 
 		out.angleDivision(data, result, System.out::println);
 		System.out.println();
-//		System.out.println("Skaičių " + Arrays.toString(data.getNums()) + " daliname iš " + data.getDiv());
 		System.out.println("Sveikoji dalis: " + result.getResult());
 		System.out.println("Likutis: " + result.getRemainder());
 		System.out.println();

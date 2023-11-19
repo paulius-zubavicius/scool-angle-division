@@ -2,21 +2,12 @@ package com.owr.division;
 
 public class Iteration {
 
-	private int pos;
 	private long remainder;
 	private long liftedDown;
 	private long origRemainder;
 	private long intPart;
 	private long subs;
 	private long result;
-
-	public int getPos() {
-		return pos;
-	}
-
-	public void setPos(int pos) {
-		this.pos = pos;
-	}
 
 	public long getRemainder() {
 		return remainder;

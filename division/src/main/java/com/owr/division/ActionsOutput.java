@@ -17,18 +17,26 @@ public class ActionsOutput {
 			linesPrinter.accept(line.toString());
 		}
 
-		boolean first = true;
 		int startPos = 0;
-		for (Iteration iter : result.getIterations()) {
-			int remLenght = String.valueOf(iter.getOrigRemainder()).length();
-			startPos = iter.getPos() + 1 - remLenght;
+		for (int i = 0; i < result.getIterations().size(); i++) {
+
+			long origRemainder = result.getIterations().get(i).getOrigRemainder();
+			int remLenght = String.valueOf(origRemainder).length();
+
+//			if (origRemainder < 10) {
+//				startPos = i - remLenght; // for additional 0 in the  begginig
+//			} else  {
+			startPos = i + 1 - remLenght;
+//			}
 
 			// Current reminder
 			StringBuilder line = new StringBuilder();
 			line.append(repeatSimbol(startPos, ' '));
-			line.append(iter.getOrigRemainder());
-			if (first) {
-				first = false;
+//			if (origRemainder < 10) {
+//				line.append("0");
+//			}
+			line.append(result.getIterations().get(i).getOrigRemainder());
+			if (i == 0) {
 				int numLenght = String.valueOf(input.getNum()).length();
 				line.append(repeatSimbol(numLenght + 3 - remLenght, ' '));
 				line.append(result.getResult());
@@ -39,7 +47,7 @@ public class ActionsOutput {
 
 			line = new StringBuilder();
 			line.append(repeatSimbol(startPos, ' '));
-			line.append(String.valueOf(iter.getIntPart() * input.getDiv()));
+			line.append(String.valueOf(result.getIterations().get(i).getIntPart() * input.getDiv()));
 			linesPrinter.accept(line.toString());
 
 			// add substraction line:
@@ -64,9 +72,9 @@ public class ActionsOutput {
 		for (Iteration iter : result.getIterations()) {
 			linesPrinter.accept(
 					"Nusikeliam skaičių " + iter.getLiftedDown() + ". Dabar likutis: " + iter.getOrigRemainder());
-			linesPrinter.accept("Į likutį " + iter.getOrigRemainder() + " telpa " + iter.getIntPart()
+			linesPrinter.accept(" - Į likutį " + iter.getOrigRemainder() + " telpa " + iter.getIntPart()
 					+ " daliklis(ai). Prirašom prie rezultato: " + iter.getResult());
-			linesPrinter.accept("Iš likutčio " + iter.getOrigRemainder() + " atimam " + iter.getSubs()
+			linesPrinter.accept(" - Iš likutčio " + iter.getOrigRemainder() + " atimam " + iter.getSubs()
 					+ " ir gaunam naują likutį " + iter.getRemainder());
 		}
 	}
